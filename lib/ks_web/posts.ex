@@ -11,7 +11,7 @@ defmodule KsWeb.Posts do
   def process_post(file) do
     [file_name, _] = String.split(file, ".", parts: 2)
     fn_name = :"#{file_name}"
-    path = "lib/ks_web/templates/#{file}"
+    path = "templates/#{file}"
 
     body = File.read!(path)
     [meta, content] = process_body(body)

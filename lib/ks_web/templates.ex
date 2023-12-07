@@ -1,7 +1,7 @@
 defmodule KsWeb.Templates do
   require EEx
 
-  paths = Path.wildcard("lib/ks_web/templates/*.md.eex")
+  paths = Path.wildcard("templates/*.md.eex")
   paths_hash = :erlang.md5(paths)
 
   for path <- paths do
@@ -9,12 +9,12 @@ defmodule KsWeb.Templates do
   end
 
   def __mix_recompile__?() do
-    Path.wildcard("lib/ks_web/templates/*.md.eex") |> :erlang.md5() != unquote(paths_hash)
+    Path.wildcard("templates/*.md.eex") |> :erlang.md5() != unquote(paths_hash)
   end
 
   Module.register_attribute(__MODULE__, :posts, accumulate: true)
 
-  File.ls!("lib/ks_web/templates")
+  File.ls!("templates")
   |> Enum.each(fn file ->
     post = KsWeb.Posts.process_post(file)
     @posts post
