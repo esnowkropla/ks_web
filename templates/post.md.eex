@@ -1,4 +1,0 @@
-<%= @title %>
-=============
-
-Hello from a [markdown](https://en.wikipedia.org/wiki/Markdown) document.

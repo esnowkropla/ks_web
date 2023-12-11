@@ -14,13 +14,15 @@ defmodule KsWeb.Templates do
 
   Module.register_attribute(__MODULE__, :posts, accumulate: true)
 
-  File.ls!("templates")
+  File.ls!("templates/posts")
   |> Enum.each(fn file ->
     post = KsWeb.Posts.process_post(file)
     @posts post
 
     EEx.function_from_string(:def, post.template, post.content, [:assigns])
   end)
+
+  EEx.function_from_file(:def, :index, "templates/index.html.eex", [:assigns])
 
   def posts, do: Enum.reverse(@posts)
 end
