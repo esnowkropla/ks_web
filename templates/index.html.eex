@@ -6,6 +6,10 @@
     <title>Elliot Kropla</title>
   </head>
   <body>
-    <%= KsWeb.Templates.excelsior(%{}) %>
+    <ul>
+      <%= for post <- posts() do %>
+        <li><%= post.title %></li>
+      <% end %>
+    </ul>
   </body>
 </html>

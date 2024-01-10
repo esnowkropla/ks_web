@@ -1,8 +1,6 @@
 defmodule KsWeb.Posts do
   alias KsWeb.Posts.Post
 
-  Module.register_attribute(__MODULE__, :posts, accumulate: true)
-
   @tag_list_pattern ~r/^tags[[:space:]]*=[[:space:]]*(.+)$/m
   @published_at_pattern ~r/^published_at[[:space:]]*=[[:space:]]*"(.+)"$/m
   @created_at_pattern ~r/^created_at[[:space:]]*=[[:space:]]*"(.+)"$/m
