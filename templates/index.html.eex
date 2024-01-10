@@ -1,15 +1,5 @@
-<!doctype html>
-<html lang="en-ca">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Elliot Kropla</title>
-  </head>
-  <body>
-    <ul>
-      <%= for post <- posts() do %>
-        <li><%= post.title %></li>
-      <% end %>
-    </ul>
-  </body>
-</html>
+<ul>
+  <%= for post <- posts() do %>
+    <li><%= post.title %></li>
+  <% end %>
+</ul>

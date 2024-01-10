@@ -24,7 +24,13 @@ defmodule KsWeb.Templates do
     EEx.function_from_string(:def, post.template, post.content, [:assigns])
   end)
 
-  EEx.function_from_file(:def, :index, "templates/index.html.eex", [:assigns])
+  EEx.function_from_file(:def, :app, "templates/app.html.eex", [:assigns])
+  EEx.function_from_file(:def, :index_file, "templates/index.html.eex", [:assigns])
+  EEx.function_from_file(:def, :post, "templates/post.html.eex", [:assigns])
 
   def posts, do: Enum.reverse(@posts)
+
+  def index(assigns) do
+    app(%{body: index_file(assigns), title: assigns[:title]})
+  end
 end

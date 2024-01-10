@@ -7,7 +7,7 @@ defmodule KsWeb.Application do
 
   @impl true
   def start(_type, _args) do
-    children = []
+    children = [{KsWeb.Config, "config.toml"}]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

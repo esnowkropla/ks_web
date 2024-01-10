@@ -1,3 +1,4 @@
 %{
   "earmark": {:hex, :earmark, "1.4.46", "8c7287bd3137e99d26ae4643e5b7ef2129a260e3dcf41f251750cb4563c8fb81", [:mix], [], "hexpm", "798d86db3d79964e759ddc0c077d5eb254968ed426399fbf5a62de2b5ff8910a"},
+  "toml": {:hex, :toml, "0.7.0", "fbcd773caa937d0c7a02c301a1feea25612720ac3fa1ccb8bfd9d30d822911de", [:mix], [], "hexpm", "0690246a2478c1defd100b0c9b89b4ea280a22be9a7b313a8a058a2408a2fa70"},
 }
