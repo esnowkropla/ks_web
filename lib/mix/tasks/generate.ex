@@ -9,6 +9,9 @@ defmodule Mix.Tasks.Generate do
     IO.puts("mkdir -p public")
     File.mkdir_p("public")
 
+    IO.puts("cp -r assets/* public/*")
+    File.cp_r!("assets", "public")
+
     # Create index
     IO.puts("Writing index.html")
 
