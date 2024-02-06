@@ -7,7 +7,7 @@ defmodule KsWeb.Sluggify do
       |> String.downcase()
 
     case result do
-      "" -> {:err, "No result"}
+      "" -> {:error, "No result"}
       text -> {:ok, text}
     end
   end

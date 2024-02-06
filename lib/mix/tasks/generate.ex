@@ -21,6 +21,8 @@ defmodule Mix.Tasks.Generate do
 
     # Create posts
     IO.puts("Writing posts")
+    IO.puts("mkdir -p public/posts")
+    File.mkdir_p!("public/posts")
 
     KsWeb.Templates.posts()
     |> Enum.each(fn post ->
