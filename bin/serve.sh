@@ -2,6 +2,11 @@
 
 set -euf -o pipefail
 
+trap 'rm -r public/' SIGINT
+
 mix generate 2>/dev/null
-caddy file-server --listen :4000 --root public/
-rm -r public/
+caddy start
+inotifywait -mI -r -e CLOSE_WRITE templates/ lib/ | while read -r _path _event _file;
+do
+  mix generate 2>/dev/null
+done
