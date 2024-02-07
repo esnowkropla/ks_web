@@ -6,7 +6,8 @@ title = "Excelsior"
 
 +++
 
-```text
+Today is <%= @build_time %>
+
 The shades of night were falling fast,
 As through an Alpine village passed
 A youth, who bore, 'mid snow and ice,
@@ -62,5 +63,4 @@ A voice fell like a falling star,
     Excelsior!
 
 -Longfellow
-```
 

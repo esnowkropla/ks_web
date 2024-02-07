@@ -11,4 +11,11 @@ defmodule KsWeb.Sluggify do
       text -> {:ok, text}
     end
   end
+
+  def slug!(text) do
+    case slug(text) do
+      {:error, e} -> raise e
+      {:ok, text} -> text
+    end
+  end
 end

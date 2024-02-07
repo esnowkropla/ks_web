@@ -3,10 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="css/tufte.css"/>
+    <link rel="stylesheet" href="/css/tufte.css"/>
+    <link rel="stylesheet" href="/css/kropla.css"/>
     <title><%= @title %></title>
   </head>
   <body>
+    <navbar>
+      <ul>
+        <li><a href="/">Elliot Snow-Kropla</a></li>
+        <li><a href="/posts">Blog</a></li>
+      </ul>
+    </navbar>
     <%= @body %>
   </body>
 </html>

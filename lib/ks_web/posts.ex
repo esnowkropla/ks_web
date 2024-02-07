@@ -21,7 +21,9 @@ defmodule KsWeb.Posts do
       created_at: meta[:created_at],
       published_at: meta[:published_at],
       title: meta[:title],
-      tags: meta[:tags]
+      tags: meta[:tags],
+      slug: KsWeb.Sluggify.slug!(file_name),
+      url: "/posts/#{KsWeb.Sluggify.slug!(file_name)}.html"
     }
   end
 
