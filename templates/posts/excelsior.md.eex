@@ -6,8 +6,11 @@ title = "Excelsior"
 
 +++
 
-Today is <%= @build_time %>
+Here's some text with a [looping bit of your link](http://www.example.com) which should
+still have a good looking descenders, even though it's back to blue.
 
+<pre>
+<code>
 The shades of night were falling fast,
 As through an Alpine village passed
 A youth, who bore, 'mid snow and ice,
@@ -63,4 +66,5 @@ A voice fell like a falling star,
     Excelsior!
 
 -Longfellow
-
+</code>
+</pre>

@@ -8,12 +8,15 @@
     <title><%= @title %></title>
   </head>
   <body>
-    <navbar>
-      <ul>
-        <li><a href="/">Elliot Snow-Kropla</a></li>
-        <li><a href="/posts">Blog</a></li>
+    <h2 class="title">Elliot Snow-Kropla</h2>
+    <nav class="sans">
+      <ul class="site-nav">
+        <li><a class="no-tufte-underline" href="/">Home</a></li>
+        <li><a class="no-tufte-underline" href="/posts">Blog</a></li>
+        <li><a class="no-tufte-underline" href="/feed.atom">Feed</a></li>
+        <li><a class="no-tufte-underline" href="/eskcv.pdf">CV</a></li>
       </ul>
-    </navbar>
+    </nav>
     <%= @body %>
   </body>
 </html>

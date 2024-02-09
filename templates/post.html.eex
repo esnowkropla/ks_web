@@ -1,4 +1,6 @@
 <article>
   <h1><%= @post.title %></h1>
-  <%= @post_text %>
+  <section>
+    <%= @post_text %>
+  </section>
 </article>
