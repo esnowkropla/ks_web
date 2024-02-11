@@ -1,5 +1,17 @@
 @charset "UTF-8";
 
+.portrait {
+  border-radius: 50%;
+  max-width: 250px;
+  height: auto;
+  margin-left: auto;
+  display: inline;
+}
+
+.bio {
+  display: inline;
+}
+
 nav ul.site-nav {
   list-style: none;
   margin: 0;

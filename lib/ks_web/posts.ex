@@ -80,4 +80,8 @@ defmodule KsWeb.Posts do
       dt
     end
   end
+
+  def compare(%Post{} = post1, %Post{} = post2) do
+    DateTime.compare(post1.published_at, post2.published_at)
+  end
 end

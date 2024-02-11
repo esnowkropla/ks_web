@@ -30,6 +30,12 @@ defmodule KsWeb.Templates do
 
   def posts, do: Enum.reverse(@posts)
 
+  def published_posts do
+    posts()
+    |> Enum.filter(&(&1.published_at != nil))
+    |> Enum.sort({:desc, Posts})
+  end
+
   def index(assigns) do
     app(%{body: index_file(assigns), title: assigns[:title]})
   end
