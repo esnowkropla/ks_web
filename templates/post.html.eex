@@ -1,7 +1,29 @@
 <article>
   <h1><a href="<%= @post.url %>"><%= @post.title %></a></h1>
   <p class="subtitle"><%= @post.published_at %></p>
+  <small>
+    <%= for tag <- @post.tags |> Enum.sort do %>
+      <a href="/"><%= tag %></a>
+    <% end %>
+  </small>
   <section>
     <%= @post_text %>
+
+    <p>
+    <%= if @previous_post != nil do %>
+      <span>Previous:
+      <a href="<%= @previous_post.url %>">
+        <%= @previous_post.title %>
+      </a>
+      </span>
+    <% end %>
+    <%= if @next_post != nil do %>
+      <br/><span>Next:
+      <a href="<%= @next_post.url %>">
+        <%= @next_post.title %>
+      </a>
+      </span>
+    <% end %>
+    </p>
   </section>
 </article>

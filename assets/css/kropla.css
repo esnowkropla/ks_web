@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
-body {
-  padding-right: 2rem;
+article {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .portrait {

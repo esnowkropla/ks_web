@@ -1,15 +1,13 @@
-<article>
-  <header>
-    <h1>About me</h1>
-    <img class="portrait" src="img/avatar.jpg" title="Elliot and his son Fred"/>
-    <p><span class="newthought">I grew up in Halifax Nova Scotia</span>, and attended Dalhouse University.  For my undergraduate research I worked in the <a href="http://pierce.atmos.colostate.edu/">Aerosol and Cloud Group</a> on the link between cosmic ray flux and cloud formation, and improving modelling of sea-salt aerosol production.  After completing my BSc I moved into the <a href="http://quantum.phys.dal.ca/index.html">Quantum Theory Group</a> and worked on translating classical problems of interest (mostly <a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem#3-satisfiability">3-SAT</a>) onto Quantum computers, culminating in my thesis <a href="https://github.com/esnowkropla/eskthesis">Compiling Programs for an Adiabatic Quantum Computer</a>.</p>
+<header>
+  <h1>About me</h1>
+  <img class="portrait" src="img/avatar.jpg" title="Elliot and his son Fred"/>
+  <p><span class="newthought">I grew up in Halifax Nova Scotia</span>, and attended Dalhouse University.  For my undergraduate research I worked in the <a href="http://pierce.atmos.colostate.edu/">Aerosol and Cloud Group</a> on the link between cosmic ray flux and cloud formation, and improving modelling of sea-salt aerosol production.  After completing my BSc I moved into the <a href="http://quantum.phys.dal.ca/index.html">Quantum Theory Group</a> and worked on translating classical problems of interest (mostly <a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem#3-satisfiability">3-SAT</a>) onto Quantum computers, culminating in my thesis <a href="https://github.com/esnowkropla/eskthesis">Compiling Programs for an Adiabatic Quantum Computer</a>.</p>
 
-    <p>In addition to various stints as a software developer, from 2015-2017 I was the co-founder and lead programmer at Two and Thirty Software working on <a href="https://store.steampowered.com/app/405240/Hairy_Little_Buggers/">Hairy Little Buggers</a>. From 2017-2018 I was the technical lead at the <a href="https://www.klick.com/">Klick Health</a> Media Data Science team. Currently, I work as a Senior Software Developer at <a href="https://www.humi.ca">Humi</a>.</p>
-  </header>
-  <h2>Latest Posts</h2>
-  <ul>
-    <%= for post <- published_posts() do %>
-      <li><a href="<%= post.url %>"><%= post.title %></a></li>
-    <% end %>
-  </ul>
-</article>
+  <p>In addition to various stints as a software developer, from 2015-2017 I was the co-founder and lead programmer at Two and Thirty Software working on <a href="https://store.steampowered.com/app/405240/Hairy_Little_Buggers/">Hairy Little Buggers</a>. From 2017-2018 I was the technical lead at the <a href="https://www.klick.com/">Klick Health</a> Media Data Science team. Currently, I work as a Senior Software Developer at <a href="https://www.humi.ca">Humi</a>.</p>
+</header>
+<h2>Latest Posts</h2>
+<ul>
+  <%= for post <- published_posts() |> Enum.take(3) do %>
+    <li><a href="<%= post.url %>"><%= post.title %></a></li>
+  <% end %>
+</ul>

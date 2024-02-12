@@ -1,3 +1,14 @@
 defmodule KsWeb.Posts.Post do
-  defstruct [:template, :path, :created_at, :published_at, :title, :tags, :content, :slug, :url]
+  defstruct [
+    :template,
+    :path,
+    :created_at,
+    :published_at,
+    :title,
+    :tags,
+    :content,
+    :slug,
+    :url,
+    :index
+  ]
 end

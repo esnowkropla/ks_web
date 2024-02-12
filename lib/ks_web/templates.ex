@@ -36,6 +36,10 @@ defmodule KsWeb.Templates do
     posts()
     |> Enum.filter(&(&1.published_at != nil))
     |> Enum.sort({:desc, Posts})
+    |> Enum.with_index()
+    |> Enum.map(fn {post, index} ->
+      %{post | index: index}
+    end)
   end
 
   def index(assigns) do
@@ -45,7 +49,18 @@ defmodule KsWeb.Templates do
   def post_body(post, assigns) do
     post_md = apply(KsWeb.Templates, post.template, [assigns])
     post_text = Earmark.as_html!(post_md)
-    post_assigns = Map.merge(assigns, %{post: post, post_text: post_text})
+    previous_post = Posts.previous_post(post)
+    next_post = Posts.next_post(post)
+
+    post_assigns =
+      assigns
+      |> Map.merge(%{
+        post: post,
+        post_text: post_text,
+        next_post: next_post,
+        previous_post: previous_post
+      })
+
     post_file(post_assigns)
   end
 

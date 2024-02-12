@@ -6,6 +6,22 @@ defmodule KsWeb.Posts do
   @created_at_pattern ~r/^created_at[[:space:]]*=[[:space:]]*"(.+)"$/m
   @title_pattern ~r/^title[[:space:]]*=[[:space:]]*"(.+)"$/m
 
+  def next_post(%Post{index: 0}), do: nil
+
+  def next_post(%Post{index: index}) do
+    case Enum.fetch(KsWeb.Templates.published_posts(), index - 1) do
+      {:ok, post} -> post
+      :error -> nil
+    end
+  end
+
+  def previous_post(%Post{index: index}) do
+    case Enum.fetch(KsWeb.Templates.published_posts(), index + 1) do
+      {:ok, post} -> post
+      :error -> nil
+    end
+  end
+
   def process_post(file) do
     [file_name, _] = String.split(file, ".", parts: 2)
     fn_name = :"#{file_name}"

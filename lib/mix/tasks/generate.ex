@@ -44,7 +44,7 @@ defmodule Mix.Tasks.Generate do
       IO.write(file, KsWeb.Templates.blog(site_assigns))
     end)
 
-    KsWeb.Templates.posts()
+    KsWeb.Templates.published_posts()
     |> Enum.each(fn post ->
       post_file = "public/posts/#{post.slug}.html"
       IO.puts("\twriting #{post.title} [#{post_file}]")
