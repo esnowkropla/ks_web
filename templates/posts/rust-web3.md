@@ -5,9 +5,10 @@ title = "A Rust Webserver"
 tags = ["rust", "python", "webdev", "programming"]
 +++
 
-The plan here is to examine a simple webserver that echos back the contents of requests as HTML. The purpose is to compare how you would do this in Rust vs Python, and what static typing and lifetimes and all the things Rust gives you feel from a programmer ergonomics standpoint compared to the equivalent in Python.  This is just some example toy code, and obviously not spec compliant*, but hopefully it illustrates some of the things that I think about programming languages.
+<p><span class="marginnote">¹You should read <a href="https://tools.ietf.org/html/rfc2616#section-5.1">the spec</a> though! It's actually pretty straightforward, and learning things properly is a good thing.</span></p>
 
-*You should read [the spec](https://tools.ietf.org/html/rfc2616#section-5.1) though! It's actually pretty straightforward, and learning things properly is a good thing.
+The plan here is to examine a simple webserver that echos back the contents of requests as HTML. The purpose is to compare how you would do this in Rust vs Python, and what static typing and lifetimes and all the things Rust gives you feel from a programmer ergonomics standpoint compared to the equivalent in Python.  This is just some example toy code, and obviously not spec compliant¹, but hopefully it illustrates some of the things that I think about programming languages.
+
 ## Server Structure
 
 The basic binary code is just [this](https://github.com/esnowkropla/rusty-web/blob/master/src/bin/main.rs):

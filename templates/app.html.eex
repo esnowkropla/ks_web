@@ -12,6 +12,7 @@
     <nav class="sans">
       <ul class="site-nav">
         <li><a class="no-tufte-underline" href="/">Home</a></li>
+        <li><a class="no-tufte-underline" href="/projects">Projects</a></li>
         <li><a class="no-tufte-underline" href="/posts">Blog</a></li>
         <li><a class="no-tufte-underline" href="/feed.atom">Feed</a></li>
         <li><a class="no-tufte-underline" href="/eskcv.pdf">CV</a></li>
@@ -19,4 +20,7 @@
     </nav>
     <%= @body %>
   </body>
+  <footer>
+    &copy; <%= @build_time.year %>
+  </footer>
 </html>

@@ -1,0 +1,10 @@
+<article>
+  <h1>Blog</h1>
+  <%= for post <- published_posts() do %>
+    <section>
+      <section>
+        <%= KsWeb.Templates.post_body(post, assigns) %>
+      </section>
+    </section>
+  <% end %>
+</article>

@@ -27,6 +27,8 @@ defmodule KsWeb.Templates do
   EEx.function_from_file(:def, :app, "templates/app.html.eex", [:assigns])
   EEx.function_from_file(:def, :index_file, "templates/index.html.eex", [:assigns])
   EEx.function_from_file(:def, :post_file, "templates/post.html.eex", [:assigns])
+  EEx.function_from_file(:def, :projects_file, "templates/projects.html.eex", [:assigns])
+  EEx.function_from_file(:def, :blog_file, "templates/blog.html.eex", [:assigns])
 
   def posts, do: Enum.reverse(@posts)
 
@@ -37,15 +39,25 @@ defmodule KsWeb.Templates do
   end
 
   def index(assigns) do
-    app(%{body: index_file(assigns), title: assigns[:title]})
+    app(Map.merge(assigns, %{body: index_file(assigns), title: assigns[:title]}))
   end
 
-  def post(post, assigns) do
+  def post_body(post, assigns) do
     post_md = apply(KsWeb.Templates, post.template, [assigns])
     post_text = Earmark.as_html!(post_md)
     post_assigns = Map.merge(assigns, %{post: post, post_text: post_text})
+    post_file(post_assigns)
+  end
 
-    post_body = KsWeb.Templates.post_file(post_assigns)
-    app(Map.merge(assigns, %{body: post_body}))
+  def post(post, assigns) do
+    app(Map.merge(assigns, %{body: post_body(post, assigns)}))
+  end
+
+  def projects(assigns) do
+    app(Map.merge(assigns, %{body: projects_file(assigns)}))
+  end
+
+  def blog(assigns) do
+    app(Map.merge(assigns, %{body: blog_file(assigns)}))
   end
 end

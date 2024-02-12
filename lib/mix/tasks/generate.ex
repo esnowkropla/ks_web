@@ -27,10 +27,22 @@ defmodule Mix.Tasks.Generate do
       IO.write(file, KsWeb.Templates.index(site_assigns))
     end)
 
+    # Create projects
+    IO.puts("mkdir -p public/projects")
+    File.mkdir_p!("public/projects")
+
+    File.open("public/projects/index.html", [:write, :utf8], fn file ->
+      IO.write(file, KsWeb.Templates.projects(site_assigns))
+    end)
+
     # Create posts
     IO.puts("Writing posts")
     IO.puts("mkdir -p public/posts")
     File.mkdir_p!("public/posts")
+
+    File.open("public/posts/index.html", [:write, :utf8], fn file ->
+      IO.write(file, KsWeb.Templates.blog(site_assigns))
+    end)
 
     KsWeb.Templates.posts()
     |> Enum.each(fn post ->
