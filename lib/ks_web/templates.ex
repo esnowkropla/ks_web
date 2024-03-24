@@ -3,6 +3,8 @@ defmodule KsWeb.Templates do
 
   alias KsWeb.Posts
 
+  import KsWeb.Helpers
+
   paths = Path.wildcard("templates/*.md.eex")
   paths_hash = :erlang.md5(paths)
 

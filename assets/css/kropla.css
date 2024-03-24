@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+.links {
+  display: flex;
+  justify-content: space-between;
+}
+
 article {
   padding-top: 0;
   padding-bottom: 0;
