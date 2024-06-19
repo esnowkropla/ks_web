@@ -66,5 +66,12 @@ defmodule Mix.Tasks.Generate do
         )
       end)
     end)
+
+    # Write CNAME for github pages
+    IO.puts("Writing CNAME")
+
+    File.open("#{base_dir}/CNAME", [:write, :utf8], fn file ->
+      IO.write(file, Application.get_env(:ks_web, :cname))
+    end)
   end
 end
