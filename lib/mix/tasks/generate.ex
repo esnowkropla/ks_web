@@ -67,6 +67,14 @@ defmodule Mix.Tasks.Generate do
       end)
     end)
 
+    # Writing Feed
+    IO.puts("Writing #{base_dir}/feed.atom")
+
+    File.open("#{base_dir}/feed.atom", [:write, :utf8], fn file ->
+      host = Application.get_env(:ks_web, :host)
+      IO.write(file, KsWeb.Feed.build_feed(KsWeb.Templates.published_posts(), host))
+    end)
+
     # Write CNAME for github pages
     IO.puts("Writing CNAME")
 
