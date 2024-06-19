@@ -21,6 +21,6 @@
     <%= @body %>
   </body>
   <footer>
-    &copy; <%= @build_time.year %>
+    &copy; Elliot Snow-Kropla <%= @build_time.year %>
   </footer>
 </html>

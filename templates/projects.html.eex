@@ -1,17 +1,37 @@
-<h1>Projects</h1>
+<article>
+  <h1>Projects</h1>
 
-<div>
-  <h2><a href="https://www.decryptr.io">Decryptr</a></h2>
-  <p>A digital port of the board game <a href="https://www.scorpionmasque.com/en/decrypto">Decrypto</a> which I built to play while social distancing.</p>
-</div>
+  <section>
+    <h2><a href="https://www.decryptr.io">Decryptr</a></h2>
+    <p>A digital port of the board game <a href="https://www.scorpionmasque.com/en/decrypto">Decrypto</a> which I built to play while social distancing.</p>
+  </section>
 
-<div>
-  <h2>Sponsorhub</h2>
-  <img src="/img/sponsorhub.gif" title="Sponsorhub in action"/>
-  <p>A marketplace for game developers to connect with streamers and youtubers to produce sponsored streams. Now sadly defunct - I should really do a post-mortem write up at some point.</p>
-</div>
+  <section>
+    <h2>Sponsorhub</h2>
+    <figure>
+      <img src="/img/sponsorhub.gif" title="Sponsorhub in action"/>
+    </figure>
+    <p>A marketplace for game developers to connect with streamers and youtubers to produce sponsored streams. Now sadly defunct - I should really do a post-mortem write up at some point.</p>
+  </section>
 
-<div>
-  <h2><a href="https://store.steampowered.com/app/405240/Hairy_Little_Buggers/">Hairy Little Buggers</a></h2>
-  <p> Hairy Little Buggers is a Simulation-Management game about cheeky Dwarves. Protect your dwarves as they dig tunnels, craft tools & fight battles. Watch as they build workshops & bedrooms, farms & great halls! Train your warriors & protect against goblins!</p>
-</div>
+  <section>
+    <h2><a href="https://store.steampowered.com/app/405240/Hairy_Little_Buggers/">Hairy Little Buggers</a></h2>
+    <figure>
+      <a href="https://store.steampowered.com/app/405240/Hairy_Little_Buggers/" class="no-tufte-underline">
+        <img src="/img/hlb.jpg"/ title="Hairy Little Buggers">
+      </a>
+    </figure>
+    <p> Hairy Little Buggers is a Simulation-Management game about cheeky Dwarves. Protect your dwarves as they dig tunnels, craft tools & fight battles. Watch as they build workshops & bedrooms, farms & great halls! Train your warriors & protect against goblins!</p>
+  </section>
+
+  <section>
+    <h2>Runway Calculator</h2>
+    <figure>
+      <img src="/img/runway.jpg" title="Runway Calculator"/>
+    </figure>
+    <p>
+      A little tool that connected to your bank account via <a href="https://plaid.com">Plaid</a>
+      and enabled you to explore different fiscal scenarios (like calculating the amount of runway you have left under different revenue growth assumptions).  Not as deserving of a post-mortem as Sponsorhub, but I should do it anyway.
+    </p>
+  </section>
+</article>

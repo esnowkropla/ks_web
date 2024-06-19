@@ -10,8 +10,12 @@ article {
   padding-bottom: 0;
 }
 
+.blog {
+  margin-bottom: 2rem;
+}
+
 .portrait {
-  border-radius: 50%;
+  border-radius: 10%;
   max-width: 250px;
   height: auto;
   display: inline;
