@@ -1,1 +1,17 @@
 <h1>Projects</h1>
+
+<div>
+  <h2><a href="https://www.decryptr.io">Decryptr</a></h2>
+  <p>A digital port of the board game <a href="https://www.scorpionmasque.com/en/decrypto">Decrypto</a> which I built to play while social distancing.</p>
+</div>
+
+<div>
+  <h2>Sponsorhub</h2>
+  <img src="/img/sponsorhub.gif" title="Sponsorhub in action"/>
+  <p>A marketplace for game developers to connect with streamers and youtubers to produce sponsored streams. Now sadly defunct - I should really do a post-mortem write up at some point.</p>
+</div>
+
+<div>
+  <h2><a href="https://store.steampowered.com/app/405240/Hairy_Little_Buggers/">Hairy Little Buggers</a></h2>
+  <p> Hairy Little Buggers is a Simulation-Management game about cheeky Dwarves. Protect your dwarves as they dig tunnels, craft tools & fight battles. Watch as they build workshops & bedrooms, farms & great halls! Train your warriors & protect against goblins!</p>
+</div>
