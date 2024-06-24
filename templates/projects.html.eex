@@ -4,7 +4,7 @@
   <section>
     <h2><a href="https://www.decryptr.io">Decryptr</a></h2>
     <figure>
-      <a href="https://www.decryptr.io">
+      <a class="no-tufte-underline" href="https://www.decryptr.io">
         <img src="/img/decryptrio.png" title="Decryptr"/>
       </a>
     </figure>
