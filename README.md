@@ -1,21 +1,10 @@
 # KsWeb
 
-**TODO: Add description**
+My static site generator - not really designed for use by anyone else,
+but "most" of the specific references are in the config or in the data files.
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `ks_web` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:ks_web, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/ks_web>.
-
+## TODO
+  - Tags/tag cloud/tag index
+  - Task to generate a skeleton post
+  - refactor for more tests
+  - polish up deploy script a bit

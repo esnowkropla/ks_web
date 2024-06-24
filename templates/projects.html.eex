@@ -3,6 +3,11 @@
 
   <section>
     <h2><a href="https://www.decryptr.io">Decryptr</a></h2>
+    <figure>
+      <a href="https://www.decryptr.io">
+        <img src="/img/decryptrio.png" title="Decryptr"/>
+      </a>
+    </figure>
     <p>A digital port of the board game <a href="https://www.scorpionmasque.com/en/decrypto">Decrypto</a> which I built to play while social distancing.</p>
   </section>
 
