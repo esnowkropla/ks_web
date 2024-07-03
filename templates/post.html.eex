@@ -3,7 +3,7 @@
   <p class="subtitle"><%= date(@post) %></p>
   <small>
     <%= for tag <- @post.tags |> Enum.sort do %>
-      <a href="/"><%= tag %></a>
+      <a href="/tags/<%= slug!(tag) %>"><%= tag %></a>
     <% end %>
   </small>
   <section>

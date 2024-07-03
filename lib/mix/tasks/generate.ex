@@ -1,6 +1,8 @@
 defmodule Mix.Tasks.Generate do
   @shortdoc "Generate the site"
 
+  alias KsWeb.Posts
+
   use Mix.Task
 
   def run(args) do
@@ -45,6 +47,8 @@ defmodule Mix.Tasks.Generate do
       IO.write(file, KsWeb.Templates.projects(site_assigns))
     end)
 
+    posts = KsWeb.Templates.published_posts()
+
     # Create posts
     IO.puts("Writing posts")
     IO.puts("mkdir -p #{base_dir}/posts")
@@ -54,7 +58,7 @@ defmodule Mix.Tasks.Generate do
       IO.write(file, KsWeb.Templates.blog(site_assigns))
     end)
 
-    KsWeb.Templates.published_posts()
+    posts
     |> Enum.each(fn post ->
       post_file = "#{base_dir}/posts/#{post.slug}.html"
       IO.puts("\twriting #{post.title} [#{post_file}]")
@@ -63,6 +67,35 @@ defmodule Mix.Tasks.Generate do
         IO.write(
           file,
           KsWeb.Templates.post(post, site_assigns)
+        )
+      end)
+    end)
+
+    # Writing tags
+    IO.puts("Writing tags")
+
+    tags = KsWeb.Tags.make_tags(posts)
+
+    IO.puts("mkdir -p #{base_dir}/tags")
+    File.mkdir_p!("#{base_dir}/tags")
+
+    File.open("#{base_dir}/tags/index.html", [:write, :utf8], fn file ->
+      IO.write(file, KsWeb.Templates.tag_index(tags, site_assigns))
+    end)
+
+    Enum.each(tags, fn tag ->
+      target = "#{base_dir}/tags/#{tag.slug}"
+      IO.puts("mkdir -p #{target}")
+      File.mkdir_p!(target)
+
+      File.open("#{target}/index.html", [:write, :utf8], fn file ->
+        IO.write(
+          file,
+          KsWeb.Templates.tag_page(
+            tag,
+            Posts.posts_for_tag(posts, tag),
+            site_assigns
+          )
         )
       end)
     end)

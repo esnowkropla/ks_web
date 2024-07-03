@@ -1,5 +1,6 @@
 defmodule KsWeb.Posts do
   alias KsWeb.Posts.Post
+  alias KsWeb.Tags.Tag
 
   @tag_list_pattern ~r/^tags[[:space:]]*=[[:space:]]*(.+)$/m
   @published_at_pattern ~r/^published_at[[:space:]]*=[[:space:]]*"(.+)"$/m
@@ -20,6 +21,10 @@ defmodule KsWeb.Posts do
       {:ok, post} -> post
       :error -> nil
     end
+  end
+
+  def posts_for_tag(posts, %Tag{text: tag}) do
+    Enum.filter(posts, fn post -> Enum.any?(post.tags, &(&1 == tag)) end)
   end
 
   def process_post(file) do

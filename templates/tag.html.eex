@@ -1,0 +1,10 @@
+<h1>#<%= @tag.text %></h1>
+<div class="blog">
+<%= for post <- @posts do %>
+  <p style="display: flex; justify-content: space-between; max-width: 60ch">
+    <a href="<%= post.url %>">
+      <%= post.title %>
+    </a>
+    <small><%= date(post) %></small>
+  </p>
+<% end %>

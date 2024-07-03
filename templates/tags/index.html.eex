@@ -1,0 +1,8 @@
+<article>
+  <h1>Tags</h1>
+  <p style="max-width: 60ch">
+    <%= for tag <- @tags do %>
+      <a href="/tags/<%= tag.slug %>"><%= tag.text %> (<%= tag.count %>)</a>
+    <% end %>
+  </p>
+</article>

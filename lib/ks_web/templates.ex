@@ -4,6 +4,7 @@ defmodule KsWeb.Templates do
   alias KsWeb.Posts
 
   import KsWeb.Helpers
+  import KsWeb.Sluggify, only: [slug!: 1]
 
   paths = Path.wildcard("templates/*.md.eex")
   paths_hash = :erlang.md5(paths)
@@ -31,6 +32,8 @@ defmodule KsWeb.Templates do
   EEx.function_from_file(:def, :post_file, "templates/post.html.eex", [:assigns])
   EEx.function_from_file(:def, :projects_file, "templates/projects.html.eex", [:assigns])
   EEx.function_from_file(:def, :blog_file, "templates/blog.html.eex", [:assigns])
+  EEx.function_from_file(:def, :tag_index_file, "templates/tags/index.html.eex", [:assigns])
+  EEx.function_from_file(:def, :tag_file, "templates/tag.html.eex", [:assigns])
 
   def posts, do: Enum.reverse(@posts)
 
@@ -46,6 +49,27 @@ defmodule KsWeb.Templates do
 
   def index(assigns) do
     app(Map.merge(assigns, %{body: index_file(assigns), title: assigns[:title]}))
+  end
+
+  def tag_page(tag, posts, assigns) do
+    app(
+      Map.merge(assigns, %{
+        body: tag_file(Map.merge(assigns, %{tag: tag, posts: posts})),
+        title: "#{tag.text}"
+      })
+    )
+  end
+
+  def tag_index(tags, assigns) do
+    app(
+      Map.merge(
+        assigns,
+        %{
+          body: tag_index_file(Map.merge(assigns, %{tags: tags})),
+          title: "Tags | " <> assigns[:title]
+        }
+      )
+    )
   end
 
   def post_body(post, assigns) do

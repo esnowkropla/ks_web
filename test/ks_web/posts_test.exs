@@ -3,6 +3,7 @@ defmodule KsWeb.PostsTest do
 
   import KsWeb.Posts
   alias KsWeb.Posts.Post
+  alias KsWeb.Tags.Tag
 
   @meta_text ~s(\npublished_at = "2017-07-10T09:48:29-04:00"\ntags = ["tag1", "tag2"]\n)
 
@@ -36,8 +37,26 @@ defmodule KsWeb.PostsTest do
     end
   end
 
-  defp raw_post(_) do
-    %{raw_post: "+++#{@meta_text}+++"}
+  describe "posts_for_tag/2" do
+    setup [:posts]
+
+    test "it filters posts based on the tag", %{posts: posts} do
+      assert posts_for_tag(posts, %Tag{text: "tag1"}) == [
+               %Post{tags: ["tag1"]},
+               %Post{tags: ["tag3", "tag1"]}
+             ]
+    end
+  end
+
+  defp posts(_) do
+    %{
+      posts: [
+        %Post{tags: ["tag1"]},
+        %Post{tags: ["tag2"]},
+        %Post{tags: ["tag3", "tag1"]},
+        %Post{tags: []}
+      ]
+    }
   end
 
   defp meta_text(_) do
