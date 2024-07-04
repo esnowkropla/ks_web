@@ -21,6 +21,7 @@ defmodule Mix.Tasks.MakePost do
 
     if File.exists?(path) do
       IO.puts(:stderr, "The file #{path} already exists, aborting")
+      exit(1)
     else
       IO.puts("Creating post skeleton ...")
       IO.puts("title: #{post_title}")

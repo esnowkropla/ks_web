@@ -1,6 +1,20 @@
 defmodule KsWeb.Helpers do
   alias KsWeb.Posts.Post
 
+  def side_note(id, do: text) do
+    template = ~s"""
+    <label class="margin-toggle sidenote-number" for="#{id}"></label>
+    <input id="#{id}" class="margin-toggle" type="checkbox"/>
+    <span class="sidenote">
+    #{text}
+    </span>
+    """
+
+    String.trim(template)
+
+    "^^INSERT^^"
+  end
+
   def group_posts_by_year(posts) do
     Enum.group_by(posts, & &1.published_at.year)
     |> Enum.to_list()
