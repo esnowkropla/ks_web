@@ -1,19 +1,28 @@
 <h1>Blog</h1>
 <div class="blog">
-<p style="max-width: 60ch">
+  <div>
   Top tags:
   <%= for tag <- @tags |> Enum.take(3) do %>
     <a href="/tags/<%= tag.slug %>"><%= tag.text %> (<%= tag.count %>)</a>
   <% end %>
   <a href="/tags">all tags</a>
-</p>
-<%= for post <- published_posts() do %>
-  <p style="display: flex; justify-content: space-between; max-width: 60ch">
-    <a href="<%= post.url %>">
-      <%= post.title %>
-    </a>
-    <small><%= date(post) %></small>
-  </p>
+  </div>
+  <%= for {year, posts} <- published_posts() |> group_posts_by_year do %>
+  <section>
+    <h1><%= year %></h1>
+    <%= for post <- posts do %>
+      <div class="blog-entry">
+        <div>
+          <h3><a href="<%= post.url %>"><%= post.title %></a></h3>
+          <div style="display: block;">
+            <%= for tag <- post.tags do %>
+              <a href="/tags/<%= tag %>"><%= tag %></a>
+            <% end %>
+          </div>
+        </div>
+        <small><%= date(post) %></small>
+      </div>
+    <% end %>
+  </section>
 <% end %>
-
 </div>

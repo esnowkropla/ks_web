@@ -10,6 +10,18 @@ article {
   padding-bottom: 0;
 }
 
+.blog-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 65ch;
+  padding-right: 65px;
+}
+
+.blog-entry > div > h3 {
+  margin-bottom: 0.5rem;
+}
+
 .blog {
   margin-bottom: 2rem;
 }
