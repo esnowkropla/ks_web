@@ -48,6 +48,7 @@ defmodule Mix.Tasks.Generate do
     end)
 
     posts = KsWeb.Templates.published_posts()
+    tags = KsWeb.Tags.make_tags(posts)
 
     # Create posts
     IO.puts("Writing posts")
@@ -55,7 +56,7 @@ defmodule Mix.Tasks.Generate do
     File.mkdir_p!("#{base_dir}/posts")
 
     File.open("#{base_dir}/posts/index.html", [:write, :utf8], fn file ->
-      IO.write(file, KsWeb.Templates.blog(site_assigns))
+      IO.write(file, KsWeb.Templates.blog(Map.merge(site_assigns, %{tags: tags})))
     end)
 
     posts
@@ -73,9 +74,6 @@ defmodule Mix.Tasks.Generate do
 
     # Writing tags
     IO.puts("Writing tags")
-
-    tags = KsWeb.Tags.make_tags(posts)
-
     IO.puts("mkdir -p #{base_dir}/tags")
     File.mkdir_p!("#{base_dir}/tags")
 

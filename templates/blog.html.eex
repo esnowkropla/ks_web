@@ -1,5 +1,12 @@
 <h1>Blog</h1>
 <div class="blog">
+<p style="max-width: 60ch">
+  Top tags:
+  <%= for tag <- @tags |> Enum.take(3) do %>
+    <a href="/tags/<%= tag.slug %>"><%= tag.text %> (<%= tag.count %>)</a>
+  <% end %>
+  <a href="/tags">all tags</a>
+</p>
 <%= for post <- published_posts() do %>
   <p style="display: flex; justify-content: space-between; max-width: 60ch">
     <a href="<%= post.url %>">
@@ -8,4 +15,5 @@
     <small><%= date(post) %></small>
   </p>
 <% end %>
+
 </div>
