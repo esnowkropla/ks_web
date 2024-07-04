@@ -76,7 +76,7 @@ defmodule KsWeb.Posts do
 
   def get_tags(meta_text) do
     case Regex.run(@tag_list_pattern, meta_text, capture: :all_but_first) do
-      nil -> nil
+      nil -> []
       [tag_list_string] -> get_tags_from_tag_list(tag_list_string)
     end
   end

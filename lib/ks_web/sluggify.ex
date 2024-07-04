@@ -2,7 +2,7 @@ defmodule KsWeb.Sluggify do
   def slug(text) do
     result =
       text
-      |> String.replace(~r/[^\w\s]/, "")
+      |> String.replace(~r/[^\w\s-]/, "")
       |> String.replace(~r/\s+/, "-")
       |> String.downcase()
 

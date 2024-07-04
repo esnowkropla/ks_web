@@ -19,4 +19,8 @@ defmodule KsWeb.SluggifyTest do
   test "it strips out punctuation" do
     assert slug("Hello, world!") == {:ok, "hello-world"}
   end
+
+  test "it preserves dashes" do
+    assert slug("culture-war") == {:ok, "culture-war"}
+  end
 end

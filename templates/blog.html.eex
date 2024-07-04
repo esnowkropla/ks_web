@@ -16,7 +16,7 @@
           <h3><a href="<%= post.url %>"><%= post.title %></a></h3>
           <div style="display: block;">
             <%= for tag <- post.tags do %>
-              <a href="/tags/<%= tag %>"><%= tag %></a>
+              <a href="/tags/<%= slug!(tag) %>"><%= tag %></a>
             <% end %>
           </div>
         </div>
