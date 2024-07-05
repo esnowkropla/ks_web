@@ -2,11 +2,34 @@ defmodule KsWeb.Helpers do
   alias KsWeb.Posts.Post
   alias KsWeb.Sidenote
 
+  def img(id, path, do: text) do
+    ~s"""
+    <figure>
+      #{margin_note(id, do: text)}
+      <img class="photo" src="#{path}" />
+    </figure>
+    """
+  end
+
   def side_note(id, do: text) do
     template = ~s"""
     <label class="margin-toggle sidenote-number" for="#{id}"></label>
     <input id="#{id}" class="margin-toggle" type="checkbox"/>
     <span class="sidenote">
+    #{text}
+    </span>
+    """
+
+    Sidenote.store(id, String.trim(template))
+
+    Sidenote.pattern(id)
+  end
+
+  def margin_note(id, do: text) do
+    template = ~s"""
+    <label class="margin-toggle" for="#{id}">⊕</label>
+    <input id="#{id}" class="margin-toggle" type="checkbox"/>
+    <span class="marginnote">
     #{text}
     </span>
     """

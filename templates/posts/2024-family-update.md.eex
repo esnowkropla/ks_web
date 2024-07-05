@@ -1,0 +1,20 @@
++++
+created_at = "2024-07-05 01:50:54.475954Z"
+published_at = "2024-07-05 01:50:54.475954Z"
+tags = ["family", "photos"]
+title = "2024 Family Update"
++++
+
+I started this site as a place to stash my resume, but now I can use it to show of pictures of my family as well.  When I first put this up I didn't have one, but now my family is a wife and *two* children.  I am blessed.
+
+<%= img("sn-mina", "/img/family-2024-07/mina-playground-2024-07.jpg") do %>
+  Mina at two and a half, enjoying summertime at the playground.
+<% end %>
+
+<%= img("sn-freddie", "/img/family-2024-07/freddie-parakeet.jpg") do %>
+  Freddie at one year old, rocking his parakeet look.
+<% end %>
+
+<%= img("sn-elliot", "/img/family-2024-07/elliot-parakeet.jpg") do %>
+  I have no idea where he gets it from.
+<% end %>
