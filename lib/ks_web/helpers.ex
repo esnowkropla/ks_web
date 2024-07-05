@@ -12,7 +12,7 @@ defmodule KsWeb.Helpers do
 
     String.trim(template)
 
-    "^^INSERT^^"
+    "^^INSERT{#{id}}^^"
   end
 
   def group_posts_by_year(posts) do
