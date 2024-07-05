@@ -9,7 +9,7 @@ The plan here is to examine a simple webserver that echos back the contents of r
 <%= side_note("sn-spec") do %>You should read <a href="https://tools.ietf.org/html/rfc2616#section-5.1">the spec</a> though! It's actually pretty straightforward, and learning things properly is a good thing.<% end %>
 , but hopefully it illustrates some of the things that I think about programming languages.
 
-<h2>Server Structure</h2>
+## Server Structure
 
 The basic binary code is just [this](https://github.com/esnowkropla/rusty-web/blob/master/src/bin/main.rs):
 ```rust

@@ -1,5 +1,6 @@
 defmodule KsWeb.Helpers do
   alias KsWeb.Posts.Post
+  alias KsWeb.Sidenote
 
   def side_note(id, do: text) do
     template = ~s"""
@@ -10,9 +11,9 @@ defmodule KsWeb.Helpers do
     </span>
     """
 
-    String.trim(template)
+    Sidenote.store(id, String.trim(template))
 
-    "^^INSERT{#{id}}^^"
+    Sidenote.pattern(id)
   end
 
   def group_posts_by_year(posts) do

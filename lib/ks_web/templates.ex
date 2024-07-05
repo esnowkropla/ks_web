@@ -74,7 +74,11 @@ defmodule KsWeb.Templates do
 
   def post_body(post, assigns) do
     post_md = apply(KsWeb.Templates, post.template, [assigns])
-    post_text = Earmark.as_html!(post_md)
+
+    post_text =
+      Earmark.as_html!(post_md)
+      |> KsWeb.Sidenote.replace_all_marks()
+
     previous_post = Posts.previous_post(post)
     next_post = Posts.next_post(post)
 

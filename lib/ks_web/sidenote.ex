@@ -1,6 +1,27 @@
 defmodule KsWeb.Sidenote do
   use GenServer
 
+  @sidenote_pattern ~r/\^\^SIDENOTE{(.+?)}\^\^/
+
+  def pattern(id), do: "^^SIDENOTE{#{id}}^^"
+
+  def replace_all_marks(text) do
+    get_marks(text)
+    |> Enum.reduce(text, fn mark, acc -> replace_mark(mark, acc) end)
+  end
+
+  def get_marks(text) do
+    Regex.scan(@sidenote_pattern, text, capture: :all_but_first)
+    |> Enum.map(&Enum.at(&1, 0))
+  end
+
+  def replace_mark(id, text) do
+    case get(id) do
+      nil -> text
+      sidenote -> String.replace(text, pattern(id), sidenote)
+    end
+  end
+
   # Client
 
   def start_link(_) do
