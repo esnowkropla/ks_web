@@ -37,18 +37,15 @@ defmodule KsWeb.Templates do
 
   def posts, do: Enum.reverse(@posts)
 
-  def published_posts do
-    posts()
-    |> Enum.filter(&(&1.published_at != nil))
-    |> Enum.sort({:desc, Posts})
-    |> Enum.with_index()
-    |> Enum.map(fn {post, index} ->
-      %{post | index: index}
-    end)
-  end
-
-  def index(assigns) do
-    app(Map.merge(assigns, %{body: index_file(assigns), title: assigns[:title]}))
+  def index(posts, assigns) do
+    app(
+      Map.merge(assigns, %{
+        body:
+          index_file(Map.put(assigns, :posts, posts))
+          |> KsWeb.Sidenote.replace_all_marks(),
+        title: assigns[:title]
+      })
+    )
   end
 
   def tag_page(tag, posts, assigns) do
@@ -72,15 +69,15 @@ defmodule KsWeb.Templates do
     )
   end
 
-  def post_body(post, assigns) do
+  def post_body(post, posts, assigns) do
     post_md = apply(KsWeb.Templates, post.template, [assigns])
 
     post_text =
       Earmark.as_html!(post_md)
       |> KsWeb.Sidenote.replace_all_marks()
 
-    previous_post = Posts.previous_post(post)
-    next_post = Posts.next_post(post)
+    previous_post = Posts.previous_post(posts, post)
+    next_post = Posts.next_post(posts, post)
 
     post_assigns =
       assigns
@@ -94,15 +91,16 @@ defmodule KsWeb.Templates do
     post_file(post_assigns)
   end
 
-  def post(post, assigns) do
-    app(Map.merge(assigns, %{body: post_body(post, assigns)}))
+  def post(post, posts, assigns) do
+    app(Map.merge(assigns, %{body: post_body(post, posts, assigns)}))
   end
 
   def projects(assigns) do
     app(Map.merge(assigns, %{body: projects_file(assigns)}))
   end
 
-  def blog(assigns) do
-    app(Map.merge(assigns, %{body: blog_file(assigns)}))
+  def blog(posts, assigns) do
+    body = blog_file(Map.merge(assigns, %{posts: posts}))
+    app(Map.merge(assigns, %{body: body, title: "Blog | " <> assigns[:title]}))
   end
 end

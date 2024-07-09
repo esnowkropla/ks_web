@@ -7,9 +7,9 @@
   <% end %>
   <a href="/tags">all tags</a>
   </div>
-  <%= for {year, posts} <- published_posts() |> group_posts_by_year do %>
+  <%= for {year, posts} <- @posts |> group_posts_by_year do %>
   <section>
-    <h1><%= year %></h1>
+    <h1 class="blog-year"><%= year %></h1>
     <%= for post <- posts do %>
       <div class="blog-entry">
         <div>

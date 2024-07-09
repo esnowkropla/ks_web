@@ -40,9 +40,13 @@ defmodule KsWeb.Helpers do
   end
 
   def group_posts_by_year(posts) do
-    Enum.group_by(posts, & &1.published_at.year)
+    Enum.group_by(posts, & &1.created_at.year)
     |> Enum.to_list()
     |> Enum.sort_by(fn {year, _} -> year end, :desc)
+  end
+
+  def date(%Post{published_at: nil, created_at: created_at}) do
+    "#{created_at.year}-#{month(created_at)}-#{day(created_at)}"
   end
 
   def date(%Post{published_at: published_at}) do

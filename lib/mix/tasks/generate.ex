@@ -1,7 +1,11 @@
 defmodule Mix.Tasks.Generate do
   @shortdoc "Generate the site"
 
-  alias KsWeb.Posts
+  import KsWeb.Posts, only: [published_posts: 0]
+  import KsWeb.Tags, only: [make_tags: 1]
+
+  alias KsWeb.Generation.Posts
+  alias KsWeb.Generation.Tags
 
   use Mix.Task
 
@@ -13,6 +17,9 @@ defmodule Mix.Tasks.Generate do
         [dir | _] -> dir
         [] -> "public"
       end
+
+    posts = KsWeb.Posts.published_posts()
+    tags = make_tags(posts)
 
     IO.puts("writing to '#{base_dir}' as base_dir")
 
@@ -36,7 +43,7 @@ defmodule Mix.Tasks.Generate do
     }
 
     File.open("#{base_dir}/index.html", [:write, :utf8], fn file ->
-      IO.write(file, KsWeb.Templates.index(site_assigns))
+      IO.write(file, KsWeb.Templates.index(posts, site_assigns))
     end)
 
     # Create projects
@@ -47,63 +54,22 @@ defmodule Mix.Tasks.Generate do
       IO.write(file, KsWeb.Templates.projects(site_assigns))
     end)
 
-    posts = KsWeb.Templates.published_posts()
-    tags = KsWeb.Tags.make_tags(posts)
-
     # Create posts
     IO.puts("Writing posts")
-    IO.puts("mkdir -p #{base_dir}/posts")
-    File.mkdir_p!("#{base_dir}/posts")
-
-    File.open("#{base_dir}/posts/index.html", [:write, :utf8], fn file ->
-      IO.write(file, KsWeb.Templates.blog(Map.merge(site_assigns, %{tags: tags})))
-    end)
-
-    posts
-    |> Enum.each(fn post ->
-      post_file = "#{base_dir}/posts/#{post.slug}.html"
-      IO.puts("\twriting #{post.title} [#{post_file}]")
-
-      File.open(post_file, [:write, :utf8], fn file ->
-        IO.write(
-          file,
-          KsWeb.Templates.post(post, site_assigns)
-        )
-      end)
-    end)
+    Posts.write_index(posts, base_dir, site_assigns, tags)
+    Posts.write_each(posts, base_dir, site_assigns)
 
     # Writing tags
     IO.puts("Writing tags")
-    IO.puts("mkdir -p #{base_dir}/tags")
-    File.mkdir_p!("#{base_dir}/tags")
-
-    File.open("#{base_dir}/tags/index.html", [:write, :utf8], fn file ->
-      IO.write(file, KsWeb.Templates.tag_index(tags, site_assigns))
-    end)
-
-    Enum.each(tags, fn tag ->
-      target = "#{base_dir}/tags/#{tag.slug}"
-      IO.puts("mkdir -p #{target}")
-      File.mkdir_p!(target)
-
-      File.open("#{target}/index.html", [:write, :utf8], fn file ->
-        IO.write(
-          file,
-          KsWeb.Templates.tag_page(
-            tag,
-            Posts.posts_for_tag(posts, tag),
-            site_assigns
-          )
-        )
-      end)
-    end)
+    Tags.write_index(base_dir, tags, site_assigns)
+    Tags.write_each(base_dir, tags, posts, site_assigns)
 
     # Writing Feed
     IO.puts("Writing #{base_dir}/feed.atom")
 
     File.open("#{base_dir}/feed.atom", [:write, :utf8], fn file ->
-      host = Application.get_env(:ks_web, :host)
-      IO.write(file, KsWeb.Feed.build_feed(KsWeb.Templates.published_posts(), host))
+      assigns = Map.put(site_assigns, :host, Application.get_env(:ks_web, :host))
+      IO.write(file, KsWeb.Feed.build_feed(posts, assigns))
     end)
 
     # Write CNAME for github pages

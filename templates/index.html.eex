@@ -2,10 +2,10 @@
   <section>
   <h1>About me</h1>
   <p>
-    <span class="marginnote">
-      <img class="portrait" src="img/avatar.jpg" style="margin-bottom: 1rem"/>
-      Me and my younger child, Christmas 2023.
-    </span>
+    <%= margin_note("mn-avatar") do %>
+      <img class="photo" src="img/avatar.jpg" style="margin-bottom: 1rem"/>
+      <span>Me and my younger child, Christmas 2023.</span>
+    <% end %>
     <span class="newthought">I grew up in Halifax, Nova Scotia</span>,
     and attended <a href="https://www.dal.ca/faculty/science/physics.html">Dalhouse University</a>.  For my undergraduate research I worked in the <a href="http://pierce.atmos.colostate.edu/">Aerosol and Cloud Group</a> on the link between cosmic ray flux and cloud formation, and improving modelling of sea-salt aerosol production.  After completing my BSc I moved into the <a href="https://web.archive.org/web/20140910113614/http://quantum.phys.dal.ca/members/jordan/index.html">Quantum Theory Group</a> and worked on translating classical problems of interest (mostly <a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem#3-satisfiability">3-SAT</a>) onto Quantum computers, culminating in my thesis <a href="https://github.com/esnowkropla/eskthesis">Compiling Programs for an Adiabatic Quantum Computer</a>.
   </p>
@@ -15,7 +15,7 @@
 </article>
 <h2>Latest Posts</h2>
 <ul>
-  <%= for post <- published_posts() |> Enum.take(3) do %>
+  <%= for post <- @posts |> Enum.take(3) do %>
     <li><a href="<%= post.url %>"><%= post.title %></a></li>
   <% end %>
 </ul>
