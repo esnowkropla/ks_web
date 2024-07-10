@@ -11,6 +11,17 @@ defmodule KsWeb.Helpers do
     """
   end
 
+  def margin_img(id, path, do: text) do
+    content = ~s"""
+    <figure>
+    <img class="photo" src="#{path}" />
+    #{text}
+    </figure>
+    """
+
+    margin_note(id, do: content)
+  end
+
   def side_note(id, do: text) do
     template = ~s"""
     <label class="margin-toggle sidenote-number" for="#{id}"></label>
