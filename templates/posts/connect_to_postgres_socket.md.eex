@@ -1,0 +1,29 @@
++++
+created_at = "2024-08-01 14:25:22.588561Z"
+published_at = "2024-08-01 14:25:22.588561Z"
+tags = ["elixir", "programming"]
+title = "Connecting to postgres via a socket"
++++
+
+For my side projects, I like to share one instance of postgres and connect to it over a socket, rather than fiddling with usernames and passwords or running dockerized postgres for each project or anything like that.  If you've `apt install`ed your postgres you also don't have to mess with `pg_hba.conf` to allow connections unlike with user/pass auth (has that changed since I learned this?  I don't know).
+
+For an elixir project using Ecto, it's not trivially obvious from the docs how to configure a socket connection rather than user/pass - the diff to `config/dev.exs` (and matching change to `config/test.exs`) you'll want looks like
+
+```
+--- a/config/dev.exs
++++ b/config/dev.exs
+@@ -2,9 +2,7 @@ import Config
+
+ # Configure your database
+ config :rk, Project.Repo,
+-  username: "postgres",
+-  password: "postgres",
+-  hostname: "localhost",
++  socket_dir: "/var/run/postgresql",
+   database: "project_dev",
+   stacktrace: true,
+   show_sensitive_data_on_connection_error: true,
+
+```
+
+Posted here so that _I_ won't need to go hunting around for this again in the future.
