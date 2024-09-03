@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.MakePost do
+defmodule Mix.Tasks.Web.MakePost do
   @shortdoc "Generate a new skeleton post"
 
   use Mix.Task

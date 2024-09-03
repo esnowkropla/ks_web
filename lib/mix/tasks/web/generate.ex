@@ -1,7 +1,6 @@
-defmodule Mix.Tasks.Generate do
+defmodule Mix.Tasks.Web.Generate do
   @shortdoc "Generate the site"
 
-  import KsWeb.Posts, only: [published_posts: 0]
   import KsWeb.Tags, only: [make_tags: 1]
 
   alias KsWeb.Generation.Posts
