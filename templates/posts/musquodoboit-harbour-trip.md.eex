@@ -1,0 +1,38 @@
++++
+created_at = "2024-08-11 19:31:56.925963Z"
+published_at = "2024-08-11 19:31:56.925963Z"
+tags = ["family", "photos"]
+title = "Musquodoboit Harbour Trip"
++++
+
+For a slightly belated birthday trip for me we drove out to Musquodoboit Harbour, since Kim hadn't explored the Eastern Shore at all before.
+
+<%= img("sn-market", "/img/musq-2024-08-11/musq-1-small.jpg") do %>
+  Musquodoboit Harbour farmer's market.
+<% end %>
+
+We checked out the farmer's market, which had a lot of cute vendors and some lovely music in the park.  We had fish and chips for lunch at [Harbour Fish n Fries](https://www.facebook.com/profile.php?id=100057378222408) which Kim said was the best battered fish she'd ever had.  She remains consistently surprised at the quality of the fish in Nova Scotia - I figure there's got to be some compensation for being stuck off of the dege of the continent into the middle of the ocean.
+
+<%= img("sn-market5", "/img/musq-2024-08-11/musq-5-small.jpg") do %>
+  Fish and Chips at <a href="https://www.facebook.com/profile.php?id=100057378222408">Harbour Fish N Fries</a>.
+<% end %>
+
+The farmer's market takes place next to the old train station, now in use as a museum and the local HRM consituency office since we've ripped up the train tracks.
+
+<%= img("sn-market6", "/img/musq-2024-08-11/musq-6-small.jpg") do %>
+  The gorgeous old train station.  It would have been wonderful to have taken the train out here, like we could have one hundred years ago.  Sad!
+<% end %>
+
+<%= img("sn-market3", "/img/musq-2024-08-11/musq-3-small.jpg") do %>
+  Freddie inspecting the lobster traps.
+<% end %>
+
+<%= img("sn-market4", "/img/musq-2024-08-11/musq-4-small.jpg") do %>
+  Riding on Papa after the little legs have given out.
+<% end %>
+
+Rounded off the trip with some ice cream.  A great day all round, even if we were a little late back for nap time.
+
+<%= img("sn-market2", "/img/musq-2024-08-11/musq-2-small.jpg") do %>
+  Pointing the way to <a href="https://www.facebook.com/PolarBearExpressIceCream">Polar Bear Express</a> ice cream.
+<% end %>
