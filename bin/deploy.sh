@@ -6,7 +6,7 @@ pushd esnowkropla.github.io || exit
 rm -r -- *
 popd || exit
 
-mix generate esnowkropla.github.io
+mix web.generate esnowkropla.github.io
 
 pushd esnowkropla.github.io || exit
 git add .
