@@ -30,7 +30,7 @@ defmodule KsWeb.Templates do
   EEx.function_from_file(:def, :app, "templates/app.html.eex", [:assigns])
   EEx.function_from_file(:def, :index_file, "templates/index.html.eex", [:assigns])
   EEx.function_from_file(:def, :post_file, "templates/post.html.eex", [:assigns])
-  EEx.function_from_file(:def, :projects_file, "templates/projects.html.eex", [:assigns])
+  EEx.function_from_file(:def, :projects_file, "templates/projects.html.eex", [])
   EEx.function_from_file(:def, :blog_file, "templates/blog.html.eex", [:assigns])
   EEx.function_from_file(:def, :tag_index_file, "templates/tags/index.html.eex", [:assigns])
   EEx.function_from_file(:def, :tag_file, "templates/tag.html.eex", [:assigns])
@@ -96,7 +96,7 @@ defmodule KsWeb.Templates do
   end
 
   def projects(assigns) do
-    app(Map.merge(assigns, %{body: projects_file(assigns)}))
+    app(Map.merge(assigns, %{body: projects_file()}))
   end
 
   def blog(posts, assigns) do
