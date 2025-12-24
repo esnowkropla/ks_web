@@ -1,0 +1,70 @@
++++
+created_at = "2025-12-23 21:13:22.908978Z"
+tags = ["databases", "sqlite", "programming"]
+title = "My SQLite Defaults"
+published_at = "2025-12-23 21:13:22.910479Z"
++++
+
+[SQLite](https://sqlite.org) is a database that operates as a single file.
+To open a database connection you open the file - there is no database server or process, your application process does all of the work.  It permits only one writer at a time, while allowing parallel readers.
+There are lots of scenarios where SQLite isn't appropriate, but the _operational_ simplicity of this approach is immense.
+I'm a big [MAJESTIC MONOLITH](https://signalvnoise.com/svn3/the-majestic-monolith/) guy, so potentially you're going from two services (app + database) to _one_ service - your app.
+<%= margin_note("mn-zero-n") do %>
+  <span>I'll simply assert it here, rather than argue it, but I think there's a massive simplicity gain from going from N of something to one of something.</span>
+<% end %>
+Add to this SQLite's [testing](https://sqlite.org/testing.html), [support](https://sqlite.org/lts.html), and a [Code of Conduct](https://sqlite.org/codeofethics.html) that I actually approve of, and there's a lot to love here.
+
+SQLite is _usually_ deployed for local applications (programs that aren't serving concurrent users).
+<%= margin_note("mn-deployments") do %>
+  <span>I've read that e.g. a typical phone contains hundreds of separate SQLite databases attached to varous apps.</span>
+<% end %>
+
+The core use case of single-user applications and a commitment not to break compatibility if at all possible means that some of the SQLite defaults are not exactly what I'd expect or want for use in a web application.
+In the spirit of my [now ongoing](/posts/connect_to_postgres_socket.html) "Using my website as a public bookmarks collection" project, here are the ways I configure SQLite to behave how I like as a backing store for [Rails](https://rubyonrails.org/) or [Phoenix](https://www.phoenixframework.org/).
+
+STRICT Tables
+-------------
+
+If I send bad data over the wire it's probably my app's mistake and I want to know right away i.e. get an error back.  What I _don't_ want is my database to store "ABC" in a numeric column without telling me.  If you don't want your database to be all loosey goosey, you want [STRICT tables](https://sqlite.org/stricttables.html).  When you create a table, throw the `STRICT` keyword on the end like below.
+
+```
+-  CREATE TABLE users (name TEXT);
++  CREATE TABLE users (name TEXT) STRICT;
+```
+
+Server friendly PRAGMAs
+-----------------------
+
+```
+PRAGMA journal_mode = WAL;
+PRAGMA synchronous = NORMAL;
+PRAGMA busy_timeout = 5000;
+PRAGMA temp_store = MEMORY;
+PRAGMA foreign_keys = TRUE;
+```
+
+### [Journal Mode](https://www.sqlite.org/pragma.html#pragma_journal_mode)
+
+WAL (write ahead log) makes a liar of me - instead of the entire database living in a file, transactions are written into a separate file and periodically commited into the central database file. This PRAGMA dramatically speeds up multiple reader scenarios.
+
+### [Synchronous](https://www.sqlite.org/pragma.html#pragma_synchronous)
+
+Synchronous `normal` synchronizes less often than `full`, but the WAL file gives you more data guarantees than the in-memory journaling, so you're not giving up much in terms of data integrity while gaining a lot of speed.
+
+### [Busy Timeout](https://www.sqlite.org/pragma.html#pragma_busy_timeout)
+
+When a query comes in and the database is busy, queue up for this many milliseconds rather than just erroring.
+
+### [Temp Store](https://www.sqlite.org/pragma.html#pragma_temp_store)
+
+Controls whether temporary storage is in memory or on disk - memory is faster but more fragile.
+
+### [Foreign Keys](https://www.sqlite.org/pragma.html#pragma_foreign_keys)
+
+Enforces foreign key constraints!  Like with strict tables, this is almost certainly what you want and what you're used to.
+
+Conclusion
+----------
+
+For most of my projects, I'm never going to have enough concurrent users to run into serious limits (and if I do that's a great problem to have).  The places I've encountered feature gaps compared to postgres are date/time handling and GIS stuff.
+I'm curious to try [SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite/index), to see how much of the [PostGIS]() functionality I'm used to can be replicated in a SQLite environment.  Also on my to-do list is to try [FTS5](https://sqlite.org/fts5.html) to get [trigram indices](https://www.postgresql.org/docs/current/pgtrgm.html), which I've used in PG to avoid having to deploy something like elastic search.  Maybe I'll report on these soon!
